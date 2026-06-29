@@ -1,0 +1,28 @@
+# Cabal / GHC build artifacts
+dist-newstyle/
+dist/
+*.o
+*.hi
+*.dyn_o
+*.dyn_hi
+*.p_o
+*.prof
+*.hp
+*.eventlog
+
+# Local cabal config & GHC environment files
+cabal.project.local
+cabal.project.local~
+.ghc.environment.*
+
+# Editor / OS noise
+*.swp
+*~
+.DS_Store
+
+# hespot runtime data (cached Spotify credentials, etc.)
+/credentials.json
+
+
+
+

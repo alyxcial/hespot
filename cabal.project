@@ -1,0 +1,5 @@
+packages: .
+
+-- Faster, quieter local builds
+package hespot
+  ghc-options: -j

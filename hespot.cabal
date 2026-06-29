@@ -1,0 +1,103 @@
+cabal-version:      3.0
+name:               hespot
+version:            0.1.0.0
+synopsis:           A clean-room Spotify Connect client core in Haskell
+description:
+  hespot is a from-scratch Haskell implementation of the Spotify access-point
+  protocol (the same wire protocol that librespot speaks), focused on a small,
+  clean, well-documented API. This first milestone covers the cryptographic
+  handshake and authentication.
+license:            MIT
+author:             fadewtf
+maintainer:         fadewtf@duck.com
+category:           Network, Sound
+build-type:         Simple
+tested-with:        GHC ==9.6.7
+
+common warnings
+  ghc-options: -Wall -Wcompat -Wno-name-shadowing -Wno-unused-do-bind
+
+library
+  import:           warnings
+  hs-source-dirs:   src
+  default-language: GHC2021
+  default-extensions:
+    OverloadedStrings
+    LambdaCase
+    MultiWayIf
+  exposed-modules:
+    Spotify
+    Spotify.Proto.Wire
+    Spotify.Proto.Keyexchange
+    Spotify.Proto.Authentication
+    Spotify.Crypto.Shannon
+    Spotify.Crypto.DiffieHellman
+    Spotify.Crypto.Keys
+    Spotify.Crypto.Hashcash
+    Spotify.Id
+    Spotify.Net.ApResolve
+    Spotify.Connection
+    Spotify.Connect
+    Spotify.Mercury
+    Spotify.WebApi
+    Spotify.Audio.Decrypt
+    Spotify.Audio.Fetch
+    Spotify.Audio.OggTag
+    Spotify.Metadata
+    Spotify.Session
+    Spotify.Auth.OAuth
+    Spotify.Auth.Cache
+    Spotify.Auth.ClientToken
+    Spotify.Auth.Login5
+  build-depends:
+      base       >=4.16 && <5
+    , bytestring
+    , array
+    , containers
+    , stm
+    , ram
+    , crypton
+    , entropy
+    , network
+    , http-client
+    , http-client-tls
+    , http-types
+    , aeson
+    , text
+    , time
+    , process
+    , directory
+    , filepath
+    , websockets
+    , wuss
+
+executable hespot
+  import:           warnings
+  hs-source-dirs:   app
+  main-is:          Main.hs
+  default-language: GHC2021
+  default-extensions:
+    OverloadedStrings
+    LambdaCase
+  build-depends:
+      base
+    , bytestring
+    , text
+    , time
+    , process
+    , directory
+    , filepath
+    , hespot
+
+test-suite hespot-test
+  import:           warnings
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Spec.hs
+  default-language: GHC2021
+  default-extensions:
+    OverloadedStrings
+  build-depends:
+      base
+    , bytestring
+    , hespot
