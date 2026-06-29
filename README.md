@@ -191,5 +191,3 @@ cabal run hespot -- <command>
 
 Requires **GHC 9.6** and **cabal 3** (e.g. via [`ghcup`](https://www.haskell.org/ghcup/)).
 Transcoding and `play` use **ffmpeg** / **ffplay** if present.
-
-See [`DESIGN.md`](./DESIGN.md) for the architecture and detailed protocol notes.
